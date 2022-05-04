@@ -1,0 +1,36 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+button:hover {
+    color: #ff0000;
+    text-shadow: 0 0 19px #7799ff;
+    transition:.6s ease;
+}
+
+#portal_form {
+    padding: 30px;
+    width: 25%;
+    height: 100%;
+    background-color: #dddddd;
+    float:left;
+      top: 0;
+  position: fixed
+
+}
+
+#padding-div {
+    padding: 40px;
+}
+
+#other {
+    padding: 30px;
+    width: 75%;
+    float:right;
+}
+
+p {
+    font-size: 20px;
+}

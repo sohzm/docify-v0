@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <form method="POST" action="/form" enctype="multipart/form-data">     
+      <div class="proj_custom" id="portal_form">
+        <h1>Admin</h1>
+        <div class="form-group">
+          <div class="form-group">
+            <label for="inputusername">Username</label>
+            <input type="text" name="username" class="form-control" id="inputusername" placeholder="Admin Username">
+          </div>
+          <div class="form-group">
+            <label for="inputpassword">Password</label>
+            <input type="password" name="password" class="form-control" id="inputpassword" placeholder="Admin Password">
+          </div>
+          <button class="btn btn-primary" onclick="get_data()">Submit</button>
+        </div>
+      </div>
+      <div id="other">
+        <label for="str_user">Student Username</label>
+        <input name="std_user" class="form-control" id="str_user" type="text" value="" />
+        <br>
+        <br>
+        <label for="str_pass">Student Password</label>
+        <input name="std_pass" class="form-control" id="str_pass" type="password" value="" />
+        <br>
+        <br>
+        <label for="docx_type">Document Name</label>
+        <input name="doc_type" class="form-control" id="docx_type" type="text" value="" />
+
+        <br>
+        <br>
+        <label for="select_file">Select File</label>
+        <input type="file" name="file" class="form-control" id="select_file" accept="application/pdf" />
+      </div>
+    </form>
+  </body>
+</html>

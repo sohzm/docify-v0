@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <form method="POST" action="/form" enctype="multipart/form-data">     
+    <form method="POST" action="/newaccount" enctype="multipart/form-data">     
       <div class="proj_custom" id="portal_form">
-        <h1>Admin Upload</h1>
+        <h1>Account Creation</h1>
         <br>
         <div class="form-group">
           <div class="form-group">
@@ -20,8 +20,8 @@
             <label for="inputpassword">Password</label>
             <input type="password" name="password" class="form-control" id="inputpassword" placeholder="Admin Password">
           </div>
-          <button class="btn btn-primary" onclick="get_data()">Submit</button>
-          <a href="http://localhost:8089/newaccount.html" >Create Account Instead?</a>
+          <button class="btn btn-primary" onclick="get_data()">Create Account</button>
+          <a href="http://localhost:8089/form.html" >Go to Admin Panel</a>
         </div>
       </div>
       <div id="other">
@@ -32,14 +32,6 @@
         <label for="str_pass">Student Password</label>
         <input name="std_pass" class="form-control" id="str_pass" type="password" value="" />
         <br>
-        <br>
-        <label for="docx_type">Document Name</label>
-        <input name="doc_type" class="form-control" id="docx_type" type="text" value="" />
-
-        <br>
-        <br>
-        <label for="select_file">Select File</label>
-        <input type="file" name="file" class="form-control" id="select_file" accept="application/pdf" />
       </div>
     </form>
   </body>

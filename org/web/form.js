@@ -1,51 +1,54 @@
+document.getElementById("second_list").style.display = "none";
+document.getElementById("second_pdf").style.display = "none";
+
+let response;
+
 async function get_data() {
   const username_str = document.getElementById('inputusername').value
   const password_str = document.getElementById('inputpassword').value
-  const promise_hash = await sha512(username_str);
+  console.log(999)
+  const promise_hash = await sha512("salt" + username_str);
   console.log("hash:", promise_hash);
-  const fetch_return = await fetch(window.location.href + "/user_data/" + "newenc");
-  const fetch_json = await fetch_return.blob();
-  console.log(fetch_json.size)
-  const newx = await blobToBase64(fetch_json)
-  console.log(newx.slice(37));
-  const n = atob(newx.slice(37));
-  console.log(n)
-  
-  var rawData = n;
-  key = "5f4dcc3b5aa765d61d8327deb882cf99";
+  const fetch_return = await fetch(window.location.href + "/user_data/" + promise_hash);
+  const fetch_json = await fetch_return.text();
+  response = JSON.parse(fetch_json);
 
-  // Decode the base64 data so we can separate iv and crypt text.
-  //var rawData = atob(data);
-  var iv = btoa(rawData.substring(0,16));
-  var crypttext = btoa(rawData.substring(16));
+  console.log(response["links"][0][0])
+  document.getElementById("first_list").style.display = "none";
+  document.getElementById("second_list").style.display = "block";
+  document.getElementById("first_pdf").style.display = "none";
+  document.getElementById("second_pdf").style.display = "block";
 
-  // Decrypt...
-  var plaintextArray = CryptoJS.AES.decrypt(
-    {
-      ciphertext: CryptoJS.enc.Base64.parse(crypttext),
-      salt: ""
-    },
-    CryptoJS.enc.Hex.parse(key),
-    { iv: CryptoJS.enc.Base64.parse(iv) }
-  );
+  document.getElementById("forming").style.width = "60%";
+  document.getElementById("banner_div").style.width = "40%";
 
-  // Convert hex string to ASCII.
-  // See https://stackoverflow.com/questions/11889329/word-array-to-string
-  function hex2a(hex) {
-    var str = '';
-    for (var i = 0; i < hex.length; i += 2)
-      str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-    return str;
+  for (let i = 0; i < response["links"].length -1; i++) {
+    if (response["links"][i][3] != "") {
+      const subject = document.querySelector('#second_list');
+      const string_val = '<div class="list_item" onclick="load_pdf(this)" value="' + i.toString() +'"> <img src="assets/checked.png" width="40px" alt=""> <h1>' + response["links"][i][0] + '</h1></br></br></br></br></br></br></br></br><p> <em> last updated: ' + response["links"][i][3] + '</em></p> </div>'; // sorry for that br*8 :)
+      const nor = await subject.insertAdjacentHTML("beforeend", string_val);
+    } else {
+      const subject = document.querySelector('#second_list');
+      const string_val = '<div class="list_item" onclick="load_pdf(this)" value="' + i.toString() +'"> <img src="assets/attention.png" width="40px" alt=""> <h1>' + response["links"][i][0] + '</h1> </div>'
+      const nor = await subject.insertAdjacentHTML("beforeend", string_val);
+
+    }
   }
 
-  console.log(hex2a(plaintextArray.toString()));
-  //    const fetch_json = await fetch_return.text();
-  //    const response = JSON.parse(fetch_json);
-  //
-  //    console.log("RESPONSE STRING::", response)
-  //    document.getElementById("login_div").style.display = "none";
-  //    document.getElementById("main_div").style.display = "flex";
+}
 
+
+
+async function load_pdf(str) {
+  var x = str.getAttribute('value');
+  const fetch_returx = await fetch(window.location.href + "/blockchain/" + response["links"][x][1]);
+  const fetch_json = await fetch_returx.text();
+  console.log(fetch_json)
+  newr = JSON.parse(fetch_json);
+
+  const username_s = document.getElementById('inputusername').value
+  document.getElementById("embed_pdf").src= newr[username_s][0];
+  console.log(newr[username_s][0]);
 }
 
 function sha512(str) {

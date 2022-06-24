@@ -15,4 +15,6 @@ Encryption to the data isn't added, which means there are no passwords (currentl
 
 ### Getting started
 
-There are 3 servers run all the go files in `login/cmd`, `org/cmd` and `portal` (Builds were not tested). Then open the `localhost:port` that portal is using. 
+There are 3 servers, run all the go files in `login/cmd`, `org/cmd` and `portal` (Builds were not tested). Then open the `localhost:port` that portal is using. 
+
+For admin panel just check the login source code, it's really small code.

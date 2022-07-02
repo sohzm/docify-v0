@@ -1,4 +1,4 @@
-Updated project will be available at [sz47/docify2](https://github.com/sz47/docify2)
+Updated project will be available at [sz47/docify](https://github.com/sz47/docify)
 
 
 
